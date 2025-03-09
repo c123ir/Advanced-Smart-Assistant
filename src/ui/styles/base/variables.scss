@@ -1,128 +1,164 @@
 /**
- * variables.scss - متغیرهای سراسری SASS
+ * variables.scss - متغیرهای پایه استایل‌ها
  */
 
-// رنگ‌های اصلی
-$primary-color: #4a5568;
-$secondary-color: #718096;
-$accent-color: #3182ce;
-$success-color: #38a169;
-$danger-color: #e53e3e;
-$warning-color: #ed8936;
-$info-color: #4299e1;
+:root {
+  /* رنگ‌های اصلی - پالت آبی-بنفش مدرن */
+  --primary-color: #4361ee;
+  --primary-light: #738bfa;
+  --primary-dark: #3a56d4;
+  --primary-bg: #f1f3ff;
+  
+  --secondary-color: #7209b7;
+  --secondary-light: #9852ca;
+  --secondary-dark: #5c0696;
+  --secondary-bg: #f8f0fc;
+  
+  --accent-color: #4cc9f0;
+  --accent-light: #7ad8f3;
+  --accent-dark: #34a6c9;
+  --accent-bg: #ebf9fd;
+  
+  /* رنگ‌های وضعیت */
+  --success-color: #10b981;
+  --success-light: #34d399;
+  --success-dark: #059669;
+  --success-bg: #ecfdf5;
+  
+  --info-color: #3b82f6;
+  --info-light: #60a5fa;
+  --info-dark: #2563eb;
+  --info-bg: #eff6ff;
+  
+  --warning-color: #f59e0b;
+  --warning-light: #fbbf24;
+  --warning-dark: #d97706;
+  --warning-bg: #fffbeb;
+  
+  --danger-color: #ef4444;
+  --danger-light: #f87171;
+  --danger-dark: #dc2626;
+  --danger-bg: #fef2f2;
+  
+  /* رنگ‌های متن */
+  --text-color: #111827;
+  --text-color-secondary: #4b5563;
+  --text-color-light: #6b7280;
+  --text-color-lighter: #9ca3af;
+  --text-color-inverse: #ffffff;
+  
+  /* رنگ‌های پس‌زمینه */
+  --bg-color: #f9fafb;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #f3f4f6;
+  --bg-card: #ffffff;
+  
+  /* رنگ‌های حاشیه */
+  --border-color: #e5e7eb;
+  --border-color-light: #f3f4f6;
+  --border-color-dark: #d1d5db;
+  
+  /* سایه‌ها */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* شعاع گوشه‌ها */
+  --border-radius-sm: 0.25rem;
+  --border-radius: 0.375rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 0.75rem;
+  --border-radius-xl: 1rem;
+  --border-radius-full: 9999px;
+  
+  /* فاصله‌ها */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  
+  /* ابعاد ثابت UI */
+  --header-height: 64px;
+  --sidebar-width: 280px;
+  --sidebar-width-collapsed: 76px;
+  
+  /* زمان انیمیشن‌ها */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+  
+  /* فونت‌ها */
+  --font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
 
-// رنگ‌های متن
-$text-color: #1a202c;
-$text-color-light: #a0aec0;
-
-// رنگ‌های پس‌زمینه
-$bg-color: #f7fafc;
-$bg-color-secondary: #ffffff;
-$bg-color-tertiary: #edf2f7;
-
-// مقادیر فاصله
-$spacing-xs: 0.25rem;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.5rem;
-$spacing-xl: 2rem;
-
-// سایزهای فونت
-$font-size-xs: 0.75rem;
-$font-size-sm: 0.875rem;
-$font-size-md: 1rem;
-$font-size-lg: 1.125rem;
-$font-size-xl: 1.25rem;
-$font-size-2xl: 1.5rem;
-$font-size-3xl: 1.875rem;
-$font-size-4xl: 2.25rem;
-
-// شعاع گوشه‌ها
-$border-radius-sm: 0.25rem;
-$border-radius: 0.375rem;
-$border-radius-lg: 0.5rem;
-
-// سایه‌ها
-$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-
-// ارتفاع هدر
-$header-height: 60px;
-
-// پهنای سایدبار
-$sidebar-width: 260px;
-$sidebar-width-collapsed: 70px;
-
-/* رنگ‌های متن */
-$text-color-lighter: #a0aec0;
-
-/* رنگ‌های پس‌زمینه */
-$bg-color-dark: #2d3748;
-
-/* رنگ‌های مرز */
-$border-color: #e2e8f0;
-$border-color-dark: #4a5568;
-
-/* تنظیمات اندازه */
-$spacer: 1rem;
-$spacers: (
-  0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-);
-
-/* شعاع گوشه‌ها */
-$border-radius-xl: 1rem;
-$border-radius-full: 9999px;
-
-/* سایه‌ها */
-$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-
-/* انیمیشن‌ها */
-$transition-base: all 0.2s ease-in-out;
-$transition-slow: all 0.3s ease-in-out;
-$transition-fast: all 0.1s ease-in-out;
-
-/* فونت‌ها */
-$font-family-base: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-$font-family-heading: $font-family-base;
-$font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
-
-/* اندازه فونت‌ها */
-$font-size-base: 1rem;
-$font-size-2xl: 1.5rem;
-$font-size-3xl: 1.875rem;
-$font-size-5xl: 3rem;
-
-/* وزن فونت‌ها */
-$font-weight-light: 300;
-$font-weight-normal: 400;
-$font-weight-medium: 500;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
-
-/* ارتفاع خط */
-$line-height-none: 1;
-$line-height-tight: 1.25;
-$line-height-snug: 1.375;
-$line-height-normal: 1.5;
-$line-height-relaxed: 1.625;
-$line-height-loose: 2;
-
-/* تنظیمات طرح‌بندی */
-$container-width: 1200px;
-
-/* نقاط شکست */
-$breakpoints: (
-  'xs': 0,
-  'sm': 576px,
-  'md': 768px,
-  'lg': 992px,
-  'xl': 1200px,
-  'xxl': 1400px
-); 
+/* Dark mode variables - added separately to allow easier toggle */
+body.dark-mode {
+  --primary-color: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --primary-bg: #26295a;
+  
+  --secondary-color: #a78bfa;
+  --secondary-light: #c4b5fd;
+  --secondary-dark: #8b5cf6;
+  --secondary-bg: #3b2b69;
+  
+  --accent-color: #38bdf8;
+  --accent-light: #7dd3fc;
+  --accent-dark: #0284c7;
+  --accent-bg: #174f7c;
+  
+  /* رنگ‌های وضعیت */
+  --success-color: #22c55e;
+  --success-light: #4ade80;
+  --success-dark: #16a34a;
+  --success-bg: #054f31;
+  
+  --info-color: #3b82f6;
+  --info-light: #60a5fa;
+  --info-dark: #2563eb;
+  --info-bg: #0c2852;
+  
+  --warning-color: #f59e0b;
+  --warning-light: #fbbf24;
+  --warning-dark: #d97706;
+  --warning-bg: #422006;
+  
+  --danger-color: #ef4444;
+  --danger-light: #f87171;
+  --danger-dark: #dc2626;
+  --danger-bg: #420d0d;
+  
+  /* رنگ‌های متن */
+  --text-color: #f9fafb;
+  --text-color-secondary: #e5e7eb;
+  --text-color-light: #d1d5db;
+  --text-color-lighter: #9ca3af;
+  --text-color-inverse: #111827;
+  
+  /* رنگ‌های پس‌زمینه */
+  --bg-color: #111827;
+  --bg-color-secondary: #1f2937;
+  --bg-color-tertiary: #374151;
+  --bg-card: #1f2937;
+  
+  /* رنگ‌های حاشیه */
+  --border-color: #374151;
+  --border-color-light: #4b5563;
+  --border-color-dark: #6b7280;
+  
+  /* سایه‌ها - تاریک‌تر برای حالت شب */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}

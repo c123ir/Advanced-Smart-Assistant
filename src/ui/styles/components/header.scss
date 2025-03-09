@@ -6,12 +6,12 @@
 .app-header {
   background-color: var(--bg-color-secondary);
   box-shadow: var(--shadow);
-  height: var(--header-height);
-  display: flex;
-  align-items: center;
-  padding: 0 1.5rem;
-  z-index: 50;
-  position: relative;
+  padding: 0.75rem 1.5rem;
+  z-index: 100;
+  position: sticky;
+  top: 0;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* محتوای هدر */
@@ -19,59 +19,110 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  height: var(--header-height);
 }
 
 /* بخش راست هدر */
 .header-start {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
 /* عنوان برنامه */
 .app-title {
   font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 1rem;
+  margin: 0;
+  color: var(--text-color);
   white-space: nowrap;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
 }
 
 /* دکمه منو برای موبایل */
 .menu-toggle {
-  display: none;
   background: none;
   border: none;
   color: var(--text-color);
-  font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: var(--bg-color-tertiary);
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* بخش چپ هدر */
 .header-end {
   display: flex;
   align-items: center;
+  gap: 1rem;
 }
 
 /* فرم جستجو */
-.search-form {
+.search-container {
   position: relative;
-  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: var(--bg-color-tertiary);
+  }
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.search-input-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  width: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  z-index: 10;
 }
 
 .search-input {
-  width: 250px;
-  padding: 0.5rem 1rem 0.5rem 2.5rem;
-  border-radius: 9999px;
+  width: 100%;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
-  background-color: var(--bg-color);
-  transition: all 0.3s;
-}
-
-.search-input:focus {
-  width: 300px;
-  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
-  border-color: var(--accent-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color-secondary);
+  box-shadow: var(--shadow);
 }
 
 .search-icon {
@@ -154,34 +205,57 @@
 
 /* پروفایل کاربر */
 .user-profile {
+  position: relative;
+}
+
+.user-profile-toggle {
+  background: none;
+  border: none;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s;
+  transition: background-color 0.2s;
   
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: var(--bg-color-tertiary);
   }
 }
 
 .user-avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: var(--accent-color);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  margin-left: 0.75rem;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--accent-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
 }
 
 .user-name {
+  color: var(--text-color);
+  font-size: 0.9rem;
   font-weight: 500;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 /* رسپانسیو */
@@ -195,7 +269,7 @@
     margin-right: 0.5rem;
   }
   
-  .search-form {
+  .search-container {
     display: none;
   }
   
@@ -205,5 +279,32 @@
   
   .user-profile .user-name {
     display: none;
+  }
+}
+
+/* استایل‌های مخصوص حالت تاریک */
+.dark-theme {
+  .app-header {
+    background-color: var(--bg-color-secondary);
+    
+    .header-start {
+      .menu-toggle, .search-toggle {
+        color: var(--text-color);
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
+    
+    .header-end {
+      .theme-toggle, .notification-toggle {
+        color: var(--text-color);
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
   }
 } 

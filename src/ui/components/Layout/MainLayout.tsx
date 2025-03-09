@@ -3,9 +3,11 @@
  * @description لایوت اصلی برنامه که شامل هدر، سایدبار و محتوای اصلی است
  */
 
-import React, { useState } from 'react';
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { User } from '../../../types/models';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 // آیکون‌ها
 const DashboardIcon = () => (
@@ -55,93 +57,88 @@ interface MainLayoutProps {
  */
 const MainLayout: React.FC<MainLayoutProps> = ({ user, onLogout }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
-
-  // لینک‌های منوی اصلی
-  const navLinks = [
-    { to: '/dashboard', text: 'داشبورد', icon: <DashboardIcon /> },
-    { to: '/tasks', text: 'مدیریت تسک‌ها', icon: <TasksIcon /> },
-    { to: '/users', text: 'مدیریت کاربران', icon: <UsersIcon /> },
-    { to: '/settings', text: 'تنظیمات', icon: <SettingsIcon /> },
-    { to: '/profile', text: 'پروفایل کاربری', icon: <ProfileIcon /> },
-  ];
 
   // تغییر وضعیت سایدبار
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  // تغییر وضعیت تم
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    // ذخیره وضعیت تم در localStorage
+    localStorage.setItem('darkMode', (!isDarkMode).toString());
+    // اعمال کلاس تم به body
+    document.body.classList.toggle('dark-theme', !isDarkMode);
+  };
+
+  // بررسی وضعیت تم ذخیره شده در localStorage
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setIsDarkMode(savedDarkMode);
+    document.body.classList.toggle('dark-theme', savedDarkMode);
+  }, []);
+
+  // بررسی اندازه صفحه برای رسپانسیو بودن
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setSidebarOpen(false);
+      } else {
+        setSidebarOpen(true);
+      }
+    };
+
+    // اجرای اولیه
+    handleResize();
+
+    // اضافه کردن event listener
+    window.addEventListener('resize', handleResize);
+
+    // پاکسازی event listener
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // استخراج عنوان صفحه فعلی
+  const getPageTitle = () => {
+    const path = location.pathname;
+    
+    if (path.startsWith('/dashboard')) return 'داشبورد';
+    if (path.startsWith('/tasks')) return 'مدیریت تسک‌ها';
+    if (path.startsWith('/users')) return 'مدیریت کاربران';
+    if (path.startsWith('/settings')) return 'تنظیمات';
+    if (path.startsWith('/profile')) return 'پروفایل کاربری';
+    if (path.startsWith('/reports')) return 'گزارش‌ها';
+    if (path.startsWith('/calendar')) return 'تقویم';
+    
+    return 'صفحه';
+  };
+
   return (
-    <div className="main-layout">
+    <div className={`main-layout ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
       {/* هدر */}
-      <header className="app-header">
-        <div className="header-container">
-          <div className="header-start">
-            <button className="menu-toggle" onClick={toggleSidebar}>
-              <span className="menu-icon"></span>
-            </button>
-            <h1 className="app-title">دستیار هوشمند پیشرفته</h1>
-          </div>
-          <div className="header-end">
-            {user && (
-              <div className="user-info">
-                <span className="user-name">
-                  {user.full_name || (user as any).fullName || user.username}
-                </span>
-                <div className="user-avatar">
-                  {(user.avatar_url || (user as any).avatar) ? (
-                    <img 
-                      src={user.avatar_url || (user as any).avatar} 
-                      alt={user.full_name || (user as any).fullName} 
-                    />
-                  ) : (
-                    <div className="avatar-placeholder">
-                      {(user.full_name || (user as any).fullName || user.username || "U").charAt(0)}
-                    </div>
-                  )}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </header>
+      <Header 
+        user={user} 
+        toggleSidebar={toggleSidebar} 
+        isDarkMode={isDarkMode} 
+        toggleDarkMode={toggleDarkMode} 
+      />
 
       <div className="app-container">
         {/* سایدبار */}
-        <aside className={`app-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-          <nav className="sidebar-nav">
-            <ul className="nav-list">
-              {navLinks.map((link) => (
-                <li key={link.to} className="nav-item">
-                  <NavLink
-                    to={link.to}
-                    className={({ isActive }) =>
-                      `nav-link ${isActive ? 'active' : ''}`
-                    }
-                  >
-                    <span className="nav-icon">{link.icon}</span>
-                    <span className="nav-text">{link.text}</span>
-                  </NavLink>
-                </li>
-              ))}
-              <li className="nav-item logout">
-                <button className="nav-link logout-button" onClick={onLogout}>
-                  <span className="nav-icon">
-                    <LogoutIcon />
-                  </span>
-                  <span className="nav-text">خروج</span>
-                </button>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+        <Sidebar isOpen={sidebarOpen} onLogout={onLogout} />
 
         {/* محتوای اصلی */}
-        <main className="app-content">
+        <main className={`app-content ${!sidebarOpen ? 'expanded' : ''}`}>
           <div className="content-header">
-            <h2 className="page-title">
-              {navLinks.find((link) => link.to === location.pathname)?.text || 'صفحه'}
-            </h2>
+            <h2 className="page-title">{getPageTitle()}</h2>
+            <div className="page-actions">
+              {/* اینجا می‌توانید دکمه‌های اکشن مخصوص هر صفحه را قرار دهید */}
+            </div>
           </div>
           <div className="content-body">
             <Outlet />
