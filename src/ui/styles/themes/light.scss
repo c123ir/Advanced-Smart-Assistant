@@ -1,0 +1,84 @@
+/**
+ * light.scss - تعریف تم روشن
+ */
+
+.light-theme, :root {
+  /* رنگ‌های اصلی */
+  --primary-color: #4a5568;
+  --secondary-color: #718096;
+  --accent-color: #3182ce;
+  --success-color: #38a169;
+  --danger-color: #e53e3e;
+  --warning-color: #ed8936;
+  --info-color: #4299e1;
+  
+  /* رنگ‌های hover */
+  --primary-color-hover: #2d3748;
+  --secondary-color-hover: #4a5568;
+  --accent-color-hover: #2c5282;
+  --success-color-hover: #2f855a;
+  --danger-color-hover: #c53030;
+  --warning-color-hover: #dd6b20;
+  --info-color-hover: #3182ce;
+  
+  /* رنگ‌های متن */
+  --text-color: #1a202c;
+  --text-color-light: #718096;
+  --text-color-lighter: #a0aec0;
+  
+  /* رنگ‌های پس‌زمینه */
+  --bg-color: #f7fafc;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #edf2f7;
+  
+  /* رنگ‌های حاشیه */
+  --border-color: #e2e8f0;
+  --border-color-light: #edf2f7;
+  
+  /* سایه‌ها */
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* تنظیم پیش‌فرض به تم روشن اگر کلاس مشخص نشده باشد */
+:root:not(.dark-theme) {
+  --primary-color: #4a5568;
+  --secondary-color: #718096;
+  --accent-color: #3182ce;
+  --success-color: #38a169;
+  --danger-color: #e53e3e;
+  --warning-color: #ed8936;
+  --info-color: #4299e1;
+  
+  --text-color: #1a202c;
+  --text-color-light: #718096;
+  --text-color-lighter: #a0aec0;
+  
+  --bg-color: #f7fafc;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #edf2f7;
+  
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  
+  /* اضافه کردن ترکیب رنگ‌ها برای حالات مختلف */
+  --primary-color-hover: #2d3748;
+  --secondary-color-hover: #4a5568;
+  --accent-color-hover: #2b6cb0;
+  --success-color-hover: #2f855a;
+  --danger-color-hover: #c53030;
+  --warning-color-hover: #dd6b20;
+  --info-color-hover: #3182ce;
+  --bg-color-hover: #e2e8f0;
+  --border-color-hover: #cbd5e0;
+  
+  /* رنگ‌های جداکننده و خطوط */
+  --divider-color: #e2e8f0;
+  --border-color-focus: #a0aec0;
+  
+  /* رنگ‌های مخصوص اسکرول‌بار */
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c1c1c1;
+  --scrollbar-thumb-hover: #a1a1a1;
+} 

@@ -1,0 +1,121 @@
+/**
+ * dark.scss - تعریف تم تاریک
+ */
+
+.dark-theme {
+  /* رنگ‌های اصلی */
+  --primary-color: #718096;
+  --secondary-color: #a0aec0;
+  --accent-color: #4299e1;
+  --success-color: #48bb78;
+  --danger-color: #f56565;
+  --warning-color: #ed8936;
+  --info-color: #63b3ed;
+  
+  /* رنگ‌های hover */
+  --primary-color-hover: #4a5568;
+  --secondary-color-hover: #718096;
+  --accent-color-hover: #3182ce;
+  --success-color-hover: #38a169;
+  --danger-color-hover: #e53e3e;
+  --warning-color-hover: #dd6b20;
+  --info-color-hover: #4299e1;
+  
+  /* رنگ‌های متن */
+  --text-color: #f7fafc;
+  --text-color-light: #cbd5e0;
+  --text-color-lighter: #a0aec0;
+  
+  /* رنگ‌های پس‌زمینه */
+  --bg-color: #1a202c;
+  --bg-color-secondary: #2d3748;
+  --bg-color-tertiary: #4a5568;
+  
+  /* رنگ‌های حاشیه */
+  --border-color: #4a5568;
+  --border-color-light: #718096;
+  
+  /* سایه‌ها */
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.24);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.24);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* حالت اختصاصی برای برخی عناصر */
+body.dark-theme {
+  .card,
+  .dropdown-menu,
+  .modal-content,
+  .popover {
+    background-color: var(--bg-color-secondary);
+    border-color: var(--border-color);
+  }
+  
+  .table {
+    color: var(--text-color);
+    
+    th {
+      background-color: var(--bg-color-tertiary);
+    }
+    
+    tbody tr:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+  }
+  
+  /* رنگ پس‌زمینه برای ورودی‌ها */
+  input, select, textarea {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+    
+    &:focus {
+      border-color: var(--accent-color);
+    }
+    
+    &::placeholder {
+      color: var(--text-color-lighter);
+    }
+  }
+  
+  /* رنگ‌ها برای لینک‌ها */
+  a {
+    color: var(--accent-color);
+    
+    &:hover {
+      color: var(--accent-color-hover);
+    }
+  }
+  
+  /* سایدبار */
+  .app-sidebar {
+    background-color: var(--bg-color-secondary);
+    
+    .nav-link {
+      color: var(--text-color-light);
+      
+      &:hover, &.active {
+        background-color: var(--bg-color-tertiary);
+        color: var(--accent-color);
+      }
+    }
+  }
+  
+  /* هدر */
+  .app-header {
+    background-color: var(--bg-color-secondary);
+    border-bottom-color: var(--border-color);
+  }
+  
+  /* دکمه‌های معکوس */
+  .btn-outline-primary,
+  .btn-outline-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--bg-color);
+    }
+  }
+} 

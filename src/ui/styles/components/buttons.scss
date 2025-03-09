@@ -1,0 +1,269 @@
+/**
+ * buttons.scss - استایل‌های مربوط به دکمه‌ها
+ */
+
+/* دکمه پایه */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus,
+  &:hover {
+    text-decoration: none;
+  }
+  
+  &:disabled,
+  &.disabled {
+    opacity: 0.65;
+    pointer-events: none;
+  }
+  
+  .btn-icon {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* اندازه‌های دکمه */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  border-radius: var(--border-radius-sm);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  border-radius: var(--border-radius-lg);
+}
+
+.btn-xl {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  border-radius: var(--border-radius-lg);
+}
+
+/* رنگ‌های دکمه - پر شده */
+.btn-primary {
+  color: white;
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--accent-color-hover);
+    border-color: var(--accent-color-hover);
+  }
+}
+
+.btn-secondary {
+  color: white;
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--secondary-color-hover);
+    border-color: var(--secondary-color-hover);
+  }
+}
+
+.btn-success {
+  color: white;
+  background-color: var(--success-color);
+  border-color: var(--success-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--success-color-hover);
+    border-color: var(--success-color-hover);
+  }
+}
+
+.btn-danger {
+  color: white;
+  background-color: var(--danger-color);
+  border-color: var(--danger-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--danger-color-hover);
+    border-color: var(--danger-color-hover);
+  }
+}
+
+.btn-warning {
+  color: white;
+  background-color: var(--warning-color);
+  border-color: var(--warning-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--warning-color-hover);
+    border-color: var(--warning-color-hover);
+  }
+}
+
+.btn-info {
+  color: white;
+  background-color: var(--info-color);
+  border-color: var(--info-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--info-color-hover);
+    border-color: var(--info-color-hover);
+  }
+}
+
+.btn-light {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  border-color: var(--border-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--bg-color-hover);
+    border-color: var(--border-color-hover);
+  }
+}
+
+.btn-dark {
+  color: white;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  
+  &:hover,
+  &:focus {
+    background-color: var(--primary-color-hover);
+    border-color: var(--primary-color-hover);
+  }
+}
+
+/* دکمه‌های خطی */
+.btn-outline-primary {
+  color: var(--accent-color);
+  background-color: transparent;
+  border-color: var(--accent-color);
+  
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
+}
+
+.btn-outline-secondary {
+  color: var(--secondary-color);
+  background-color: transparent;
+  border-color: var(--secondary-color);
+  
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+}
+
+.btn-outline-success {
+  color: var(--success-color);
+  background-color: transparent;
+  border-color: var(--success-color);
+  
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+  }
+}
+
+.btn-outline-danger {
+  color: var(--danger-color);
+  background-color: transparent;
+  border-color: var(--danger-color);
+  
+  &:hover,
+  &:focus {
+    color: white;
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+  }
+}
+
+/* دکمه لینکی */
+.btn-link {
+  font-weight: 400;
+  color: var(--accent-color);
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  
+  &:hover,
+  &:focus {
+    color: var(--accent-color-hover);
+    text-decoration: underline;
+  }
+}
+
+/* دکمه آیکون */
+.btn-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  &.btn-sm {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  
+  &.btn-lg {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
+  }
+}
+
+/* گروه دکمه‌ها */
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  
+  > .btn {
+    position: relative;
+    flex: 1 1 auto;
+  }
+  
+  > .btn:not(:first-child) {
+    margin-right: -1px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  > .btn:not(:last-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+} 

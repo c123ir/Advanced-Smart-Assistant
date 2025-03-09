@@ -1,0 +1,149 @@
+/**
+ * reset.scss - ریست کردن استایل‌های پیش‌فرض
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  border-style: none;
+  max-width: 100%;
+  height: auto;
+}
+
+ul, ol {
+  list-style-type: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* حذف خط دور هنگام فوکوس برای برخی مرورگرها */
+:focus {
+  outline: 0;
+}
+
+/* حذف margin از المان‌های block */
+body, h1, h2, h3, h4, h5, h6, p, ol, ul, blockquote, figure, dl, dd {
+  margin: 0;
+}
+
+/* تنظیم line-height پایه */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* تنظیمات body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+}
+
+/* حذف استایل‌های لیست */
+ol, ul {
+  list-style: none;
+}
+
+/* حذف تورفتگی پاراگراف */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* تنظیم استایل برای تصاویر */
+img {
+  max-width: 100%;
+  display: block;
+  border-style: none;
+}
+
+/* حذف x از input های search */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* تصحیح استایل fieldset */
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/* تصحیح حالت کلیک */
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+
+/* حالت فعال قابل دیدن */
+:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+} 

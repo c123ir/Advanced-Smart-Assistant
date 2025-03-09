@@ -1,0 +1,209 @@
+/**
+ * header.scss - استایل‌های مربوط به سربرگ برنامه
+ */
+
+/* هدر اصلی */
+.app-header {
+  background-color: var(--bg-color-secondary);
+  box-shadow: var(--shadow);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 50;
+  position: relative;
+}
+
+/* محتوای هدر */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* بخش راست هدر */
+.header-start {
+  display: flex;
+  align-items: center;
+}
+
+/* عنوان برنامه */
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 1rem;
+  white-space: nowrap;
+}
+
+/* دکمه منو برای موبایل */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* بخش چپ هدر */
+.header-end {
+  display: flex;
+  align-items: center;
+}
+
+/* فرم جستجو */
+.search-form {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.search-input {
+  width: 250px;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  transition: all 0.3s;
+}
+
+.search-input:focus {
+  width: 300px;
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
+  border-color: var(--accent-color);
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color-light);
+  pointer-events: none;
+}
+
+/* مسیر صفحه */
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  
+  &:not(:last-child)::after {
+    content: "/";
+    margin: 0 0.5rem;
+    color: var(--text-color-light);
+  }
+  
+  a {
+    color: var(--text-color-light);
+    text-decoration: none;
+    
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+  
+  &.active {
+    color: var(--text-color);
+    font-weight: 500;
+  }
+}
+
+/* دکمه‌های عملیات */
+.header-actions {
+  display: flex;
+  align-items: center;
+}
+
+.header-action-button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-color);
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--accent-color);
+  }
+  
+  &.has-notification::after {
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--danger-color);
+    border-radius: 50%;
+  }
+}
+
+/* پروفایل کاربر */
+.user-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.user-avatar {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-left: 0.75rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    margin-left: 0.5rem;
+  }
+  
+  .app-title {
+    margin-right: 0.5rem;
+  }
+  
+  .search-form {
+    display: none;
+  }
+  
+  .breadcrumb {
+    display: none;
+  }
+  
+  .user-profile .user-name {
+    display: none;
+  }
+} 

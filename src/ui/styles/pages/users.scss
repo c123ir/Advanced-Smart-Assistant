@@ -1,0 +1,601 @@
+/**
+ * users.scss - استایل‌های صفحه کاربران
+ */
+
+.users-page {
+  padding: 1.5rem;
+  
+  .page-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    .header-actions {
+      .btn {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  
+  .users-filters {
+    background-color: var(--bg-color-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+      
+      input {
+        width: 100%;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background-color: var(--bg-color);
+        
+        &:focus {
+          border-color: var(--accent-color);
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.1);
+        }
+      }
+      
+      .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-color-light);
+      }
+    }
+    
+    .filter-select {
+      min-width: 180px;
+      
+      select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        background-color: var(--bg-color);
+        
+        &:focus {
+          border-color: var(--accent-color);
+          outline: none;
+        }
+      }
+    }
+  }
+  
+  .users-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    
+    .user-card {
+      background-color: var(--bg-color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+      
+      .user-header {
+        background-color: var(--bg-color-tertiary);
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+        .user-avatar {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-bottom: 1rem;
+          background-color: var(--accent-color);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 1.75rem;
+          font-weight: 700;
+        }
+        
+        .user-name {
+          font-size: 1.1rem;
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+        
+        .user-role {
+          display: inline-block;
+          padding: 0.25rem 0.5rem;
+          border-radius: 99px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          background-color: rgba(var(--primary-color-rgb), 0.1);
+          color: var(--primary-color);
+          margin-bottom: 0.5rem;
+          
+          &.admin {
+            background-color: rgba(var(--accent-color-rgb), 0.1);
+            color: var(--accent-color);
+          }
+        }
+        
+        .user-email {
+          font-size: 0.9rem;
+          color: var(--text-color-light);
+        }
+      }
+      
+      .user-stats {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        
+        .stat-item {
+          padding: 0 0.5rem;
+          text-align: center;
+          
+          &:first-child {
+            border-left: 1px solid var(--border-color);
+          }
+          
+          .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+          }
+          
+          .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-color-light);
+          }
+        }
+      }
+      
+      .user-actions {
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-around;
+        
+        button {
+          background: none;
+          border: none;
+          color: var(--text-color-light);
+          padding: 0.5rem;
+          cursor: pointer;
+          transition: color 0.2s;
+          
+          &:hover {
+            color: var(--accent-color);
+          }
+        }
+      }
+    }
+  }
+  
+  .users-list {
+    background-color: var(--bg-color-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    
+    .users-list-header {
+      padding: 1rem 1.5rem;
+      background-color: var(--bg-color-tertiary);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      
+      .users-list-row {
+        color: var(--primary-color);
+      }
+    }
+    
+    .users-list-row {
+      display: grid;
+      grid-template-columns: 60px 2fr 1.5fr 1fr 1fr 100px;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      
+      @media (max-width: 1200px) {
+        grid-template-columns: 60px 2fr 1.5fr 100px;
+        
+        .user-created, .user-tasks {
+          display: none;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 60px 2fr;
+        
+        .user-email {
+          display: none;
+        }
+      }
+    }
+    
+    .user-item {
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:hover {
+        background-color: var(--bg-color-tertiary);
+      }
+      
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: var(--accent-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      
+      .user-info {
+        .user-name {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+        
+        .user-username {
+          font-size: 0.85rem;
+          color: var(--text-color-light);
+        }
+      }
+      
+      .user-email {
+        font-size: 0.9rem;
+      }
+      
+      .user-created {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+      
+      .user-tasks {
+        .badge {
+          display: inline-block;
+          padding: 0.25rem 0.5rem;
+          border-radius: 99px;
+          background-color: rgba(var(--accent-color-rgb), 0.1);
+          color: var(--accent-color);
+          font-size: 0.85rem;
+          font-weight: 600;
+        }
+      }
+      
+      .user-actions {
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.25rem;
+          color: var(--text-color-light);
+          transition: color 0.2s;
+          
+          &:hover {
+            color: var(--accent-color);
+          }
+          
+          &:not(:last-child) {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    
+    .pagination-item {
+      margin: 0 0.25rem;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+      
+      &.active {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: white;
+      }
+      
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        
+        &:hover {
+          border-color: var(--border-color);
+          color: inherit;
+        }
+      }
+    }
+  }
+}
+
+/* صفحه کاربران */
+.users-page {
+  padding: 1.5rem 0;
+}
+
+/* سربرگ کاربران */
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.users-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.users-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* فیلترها و جستجو */
+.users-filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--bg-color-secondary);
+  border-radius: var(--border-radius);
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+  
+  &:last-child {
+    margin-left: 0;
+  }
+}
+
+.filter-label {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.filter-select {
+  min-width: 150px;
+}
+
+.users-search {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-color-light);
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem 0.5rem 2.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  
+  &:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
+  }
+}
+
+/* جدول کاربران */
+.users-table-wrapper {
+  overflow-x: auto;
+  background-color: var(--bg-color-secondary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 1rem;
+    text-align: right;
+  }
+  
+  th {
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+  }
+  
+  tr:not(:last-child) td {
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  tr:hover td {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+}
+
+/* اطلاعات کاربر */
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-left: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+/* نقش کاربر */
+.user-role {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.role-admin {
+  background-color: rgba(var(--danger-color-rgb), 0.1);
+  color: var(--danger-color);
+}
+
+.role-manager {
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  color: var(--accent-color);
+}
+
+.role-user {
+  background-color: rgba(var(--secondary-color-rgb), 0.1);
+  color: var(--secondary-color);
+}
+
+/* وضعیت کاربر */
+.user-status {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background-color: rgba(var(--success-color-rgb), 0.1);
+  color: var(--success-color);
+}
+
+.status-inactive {
+  background-color: rgba(var(--secondary-color-rgb), 0.1);
+  color: var(--secondary-color);
+}
+
+/* عملیات کاربر */
+.user-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* صفحه‌بندی */
+.users-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.pagination-info {
+  color: var(--text-color-light);
+  font-size: 0.875rem;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+  .users-filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-group {
+    margin: 0.5rem 0;
+  }
+  
+  .user-avatar {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .users-table th:nth-child(2),
+  .users-table td:nth-child(2),
+  .users-table th:nth-child(3),
+  .users-table td:nth-child(3),
+  .users-table th:nth-child(6),
+  .users-table td:nth-child(6) {
+    display: none;
+  }
+} 

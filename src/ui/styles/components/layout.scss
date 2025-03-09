@@ -1,0 +1,159 @@
+/**
+ * layout.scss - استایل‌های مربوط به طرح‌بندی اصلی برنامه
+ */
+
+@use "sass:math";
+
+/* طرح‌بندی اصلی */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* محتوای اصلی */
+.app-container {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - var(--header-height));
+  overflow: hidden;
+}
+
+/* محتوای اصلی */
+.app-content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  background-color: var(--bg-color);
+}
+
+/* کانتینر */
+.container {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/* کانتینر سیال */
+.container-fluid {
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* ردیف */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+/* ستون */
+.col {
+  position: relative;
+  width: 100%;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+/* ستون‌های میزان شده */
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 calc($i / 12 * 100%);
+    max-width: calc($i / 12 * 100%);
+  }
+}
+
+@media (min-width: 576px) {
+  @for $i from 1 through 12 {
+    .col-sm-#{$i} {
+      flex: 0 0 calc($i / 12 * 100%);
+      max-width: calc($i / 12 * 100%);
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      flex: 0 0 calc($i / 12 * 100%);
+      max-width: calc($i / 12 * 100%);
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  @for $i from 1 through 12 {
+    .col-lg-#{$i} {
+      flex: 0 0 calc($i / 12 * 100%);
+      max-width: calc($i / 12 * 100%);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  @for $i from 1 through 12 {
+    .col-xl-#{$i} {
+      flex: 0 0 calc($i / 12 * 100%);
+      max-width: calc($i / 12 * 100%);
+    }
+  }
+}
+
+/* جعبه و کارت */
+.box {
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color-secondary);
+  box-shadow: var(--shadow);
+}
+
+/* بخش‌بندی */
+.section {
+  margin-bottom: 2rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.section-subtitle {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+} 

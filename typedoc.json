@@ -1,0 +1,19 @@
+{
+  "entryPoints": [
+    "/Users/stivenjakson/my-app/smart-assistant123/Advanced-Smart-Assistant/src/core",
+    "/Users/stivenjakson/my-app/smart-assistant123/Advanced-Smart-Assistant/src/services",
+    "/Users/stivenjakson/my-app/smart-assistant123/Advanced-Smart-Assistant/src/utils"
+  ],
+  "out": "/Users/stivenjakson/my-app/smart-assistant123/Advanced-Smart-Assistant/docs/api",
+  "name": "Advanced Smart Assistant API",
+  "theme": "default",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "hideGenerator": true,
+  "disableSources": false,
+  "plugin": [
+    "typedoc-plugin-markdown"
+  ],
+  "readme": "/Users/stivenjakson/my-app/smart-assistant123/Advanced-Smart-Assistant/README.md"
+}

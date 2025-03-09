@@ -1,0 +1,276 @@
+/**
+ * main.scss - فایل اصلی استایل‌های برنامه
+ *
+ * این فایل شامل وارد کردن‌های سایر فایل‌های استایل‌دهی 
+ * و تعریف استایل‌های سراسری است
+ */
+
+/* استفاده از ماژول‌های sass */
+@use "sass:math";
+@use "sass:color";
+
+/* استایل‌های پایه */
+@use './base/variables';
+@use './base/reset';
+@use './base/typography';
+@use './base/utilities';
+@use './base/fonts';
+
+/* استایل‌های تم */
+@use './themes/light';
+@use './themes/dark';
+
+/* استایل‌های کامپوننت‌ها */
+@use './components/layout';
+@use './components/sidebar';
+@use './components/header';
+@use './components/buttons';
+@use './components/forms';
+@use './components/cards';
+@use './components/tables';
+@use './components/alerts';
+@use './components/loading';
+@use './components/modals';
+
+/* استایل‌های صفحات */
+@use './pages/login';
+@use './pages/dashboard';
+@use './pages/tasks';
+@use './pages/users';
+@use './pages/settings';
+@use './pages/profile';
+@use './pages/not-found';
+
+/**
+ * استایل‌های اولیه
+ */
+:root {
+  --primary-color: #4a5568;
+  --secondary-color: #718096;
+  --accent-color: #3182ce;
+  --success-color: #38a169;
+  --danger-color: #e53e3e;
+  --warning-color: #ed8936;
+  --info-color: #4299e1;
+  
+  /* رنگ‌های hover */
+  --primary-color-hover: #2d3748;
+  --secondary-color-hover: #4a5568;
+  --accent-color-hover: #2c5282;
+  --success-color-hover: #2f855a;
+  --danger-color-hover: #c53030;
+  --warning-color-hover: #dd6b20;
+  --info-color-hover: #3182ce;
+  
+  --primary-color-rgb: 74, 85, 104;
+  --secondary-color-rgb: 113, 128, 150;
+  --accent-color-rgb: 49, 130, 206;
+  --success-color-rgb: 56, 161, 105;
+  --danger-color-rgb: 229, 62, 62;
+  --warning-color-rgb: 237, 137, 54;
+  --info-color-rgb: 66, 153, 225;
+  
+  --text-color: #1a202c;
+  --text-color-light: #a0aec0;
+  --bg-color: #f7fafc;
+  --bg-color-secondary: #ffffff;
+  --bg-color-tertiary: #edf2f7;
+  
+  --border-color: #e2e8f0;
+  --border-radius: 0.375rem;
+  --border-radius-sm: 0.25rem;
+  --border-radius-lg: 0.5rem;
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  --font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  
+  --header-height: 60px;
+}
+
+/* تنظیمات RTL و فونت */
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  line-height: 1.5;
+  direction: rtl;
+  text-align: right;
+}
+
+/* استایل‌های عمومی */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* استایل‌های کامپوننت‌های اصلی (تا زمانی که فایل‌های جداگانه ایجاد شوند) */
+
+/* لایوت اصلی */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container {
+  display: flex;
+  flex: 1;
+}
+
+.app-content {
+  flex: 1;
+  padding: 1.5rem;
+  background-color: var(--bg-color);
+}
+
+/* هدر */
+.app-header {
+  background-color: var(--bg-color-secondary);
+  box-shadow: var(--shadow);
+  padding: 0.75rem 1.5rem;
+  z-index: 10;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-start {
+  display: flex;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  margin: 0 1rem;
+  font-weight: 600;
+}
+
+/* سایدبار */
+.app-sidebar {
+  width: 260px;
+  background-color: var(--bg-color-secondary);
+  border-left: 1px solid var(--border-color);
+  transition: width 0.3s ease;
+}
+
+.app-sidebar.closed {
+  width: 70px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin: 0.5rem 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--accent-color);
+}
+
+.nav-icon {
+  margin-left: 0.75rem;
+}
+
+/* فرم‌ها */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-color);
+}
+
+/* دکمه‌ها */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color-hover);
+}
+
+/* تسک‌ها */
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.status-pending {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.status-in_progress {
+  background-color: var(--info-color);
+  color: white;
+}
+
+.status-completed {
+  background-color: var(--success-color);
+  color: white;
+}
+
+/* لودینگ */
+.loading-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 300px;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-right-color: var(--accent-color);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+} 

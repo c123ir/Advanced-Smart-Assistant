@@ -1,0 +1,175 @@
+/**
+ * sidebar.scss - استایل‌های مربوط به نوار کناری برنامه
+ */
+
+/* سایدبار */
+.app-sidebar {
+  width: var(--sidebar-width);
+  min-height: 100%;
+  background-color: var(--bg-color-secondary);
+  border-left: 1px solid var(--border-color);
+  transition: width 0.3s ease;
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* حالت جمع شده */
+.app-sidebar.collapsed {
+  width: var(--sidebar-width-collapsed);
+}
+
+/* لوگو و برند */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sidebar-logo {
+  width: 2rem;
+  height: 2rem;
+}
+
+.sidebar-brand-text {
+  margin-right: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.app-sidebar.collapsed .sidebar-brand-text {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+}
+
+/* لیست منو */
+.nav-list {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin: 0.25rem 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 0.25rem;
+  margin: 0 0.5rem;
+}
+
+.nav-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--accent-color);
+}
+
+.nav-link.active {
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.nav-icon {
+  margin-left: 0.75rem;
+  font-size: 1.25rem;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.nav-text {
+  white-space: nowrap;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.app-sidebar.collapsed .nav-text {
+  opacity: 0;
+  width: 0;
+  margin: 0;
+}
+
+/* جداکننده */
+.sidebar-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 0.5rem 1rem;
+}
+
+/* گروه منو */
+.nav-group-title {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-color-light);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.app-sidebar.collapsed .nav-group-title {
+  opacity: 0;
+}
+
+/* دکمه جمع‌کردن */
+.sidebar-toggle {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--bg-color-tertiary);
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  z-index: 10;
+  border: none;
+}
+
+.app-sidebar.collapsed .sidebar-toggle {
+  transform: rotate(180deg);
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+  .app-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 90;
+    display: none;
+  }
+  
+  .sidebar-backdrop.show {
+    display: block;
+  }
+} 

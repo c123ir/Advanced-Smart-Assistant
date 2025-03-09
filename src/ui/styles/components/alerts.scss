@@ -1,0 +1,179 @@
+/**
+ * alerts.scss - استایل‌های مربوط به هشدارها
+ */
+
+@use "sass:color";
+
+/* هشدار پایه */
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  
+  .alert-icon {
+    margin-left: 0.75rem;
+    font-size: 1.25rem;
+  }
+  
+  .alert-content {
+    flex: 1;
+  }
+  
+  .alert-title {
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .alert-message {
+    margin: 0;
+    color: inherit;
+  }
+  
+  .alert-close {
+    margin-right: 0.5rem;
+    background: transparent;
+    border: none;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: opacity 0.15s ease-in-out;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/* هشدار اولیه */
+.alert-primary {
+  color: #2d3748; /* رنگ تیره‌تر از primary-color */
+  background-color: #ebf4ff; /* رنگ روشن‌تر از primary-color */
+  border-color: #c3dafe; /* رنگ متوسط برای border */
+}
+
+/* هشدار ثانویه */
+.alert-secondary {
+  color: #4a5568; /* رنگ تیره‌تر از secondary-color */
+  background-color: #edf2f7; /* رنگ روشن‌تر از secondary-color */
+  border-color: #cbd5e0; /* رنگ متوسط برای border */
+}
+
+/* هشدار موفقیت */
+.alert-success {
+  color: #276749; /* رنگ تیره‌تر از success-color */
+  background-color: #c6f6d5; /* رنگ روشن‌تر از success-color */
+  border-color: #9ae6b4; /* رنگ متوسط برای border */
+}
+
+/* هشدار خطر */
+.alert-danger {
+  color: #c53030; /* رنگ تیره‌تر از danger-color */
+  background-color: #fed7d7; /* رنگ روشن‌تر از danger-color */
+  border-color: #feb2b2; /* رنگ متوسط برای border */
+}
+
+/* هشدار اخطار */
+.alert-warning {
+  color: #c05621; /* رنگ تیره‌تر از warning-color */
+  background-color: #feebc8; /* رنگ روشن‌تر از warning-color */
+  border-color: #fbd38d; /* رنگ متوسط برای border */
+}
+
+/* هشدار اطلاعات */
+.alert-info {
+  color: #2c5282; /* رنگ تیره‌تر از info-color */
+  background-color: #bee3f8; /* رنگ روشن‌تر از info-color */
+  border-color: #90cdf4; /* رنگ متوسط برای border */
+}
+
+/* در حالت تاریک هشدارها، ما نیاز به تنظیمات متفاوتی داریم */
+.dark-theme {
+  .alert-primary {
+    color: #e2e8f0; /* رنگ روشن‌تر از primary-color */
+    background-color: rgba(74, 85, 104, 0.2);
+    border-color: rgba(74, 85, 104, 0.3);
+  }
+  
+  .alert-secondary {
+    color: #edf2f7; /* رنگ روشن‌تر از secondary-color */
+    background-color: rgba(113, 128, 150, 0.2);
+    border-color: rgba(113, 128, 150, 0.3);
+  }
+  
+  .alert-success {
+    color: #9ae6b4; /* رنگ روشن‌تر از success-color */
+    background-color: rgba(56, 161, 105, 0.2);
+    border-color: rgba(56, 161, 105, 0.3);
+  }
+  
+  .alert-danger {
+    color: #feb2b2; /* رنگ روشن‌تر از danger-color */
+    background-color: rgba(229, 62, 62, 0.2);
+    border-color: rgba(229, 62, 62, 0.3);
+  }
+  
+  .alert-warning {
+    color: #fbd38d; /* رنگ روشن‌تر از warning-color */
+    background-color: rgba(237, 137, 54, 0.2);
+    border-color: rgba(237, 137, 54, 0.3);
+  }
+  
+  .alert-info {
+    color: #90cdf4; /* رنگ روشن‌تر از info-color */
+    background-color: rgba(66, 153, 225, 0.2);
+    border-color: rgba(66, 153, 225, 0.3);
+  }
+}
+
+/* هشدار با سبک رنگی */
+.alert-solid {
+  color: white;
+  
+  &.alert-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  &.alert-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  
+  &.alert-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+  }
+  
+  &.alert-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+  }
+  
+  &.alert-warning {
+    background-color: var(--warning-color);
+    border-color: var(--warning-color);
+  }
+  
+  &.alert-info {
+    background-color: var(--info-color);
+    border-color: var(--info-color);
+  }
+}
+
+/* هشدار قابل بستن */
+.alert-dismissible {
+  padding-left: 3rem;
+  
+  .alert-close {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+  }
+} 

@@ -1,0 +1,255 @@
+/**
+ * forms.scss - استایل‌های مربوط به فرم‌ها
+ */
+
+/* فیلد ورودی پایه */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-color);
+  background-color: var(--bg-color-secondary);
+  background-clip: padding-box;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  
+  &:focus {
+    outline: 0;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.2rem rgba(var(--accent-color-rgb), 0.25);
+  }
+  
+  &::placeholder {
+    color: var(--text-color-lighter);
+    opacity: 1;
+  }
+  
+  &:disabled,
+  &[readonly] {
+    background-color: var(--bg-color-tertiary);
+    opacity: 0.7;
+  }
+}
+
+/* زمینه فرم */
+.form-group {
+  margin-bottom: 1rem;
+  
+  label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  small.form-text {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-color-light);
+  }
+}
+
+/* چک باکس و رادیو باتن */
+.form-check {
+  position: relative;
+  display: block;
+  padding-right: 1.25rem;
+  
+  &-input {
+    position: absolute;
+    margin-right: -1.25rem;
+    margin-top: 0.3rem;
+    
+    &:checked ~ .form-check-label::before {
+      color: #fff;
+      border-color: var(--accent-color);
+      background-color: var(--accent-color);
+    }
+    
+    &:focus ~ .form-check-label::before {
+      box-shadow: 0 0 0 0.2rem rgba(var(--accent-color-rgb), 0.25);
+    }
+    
+    &:disabled ~ .form-check-label {
+      color: var(--text-color-lighter);
+      
+      &::before {
+        background-color: var(--bg-color-tertiary);
+      }
+    }
+  }
+  
+  &-label {
+    margin-bottom: 0;
+    
+    &::before {
+      position: absolute;
+      top: 0.25rem;
+      right: 0;
+      display: block;
+      width: 1rem;
+      height: 1rem;
+      content: "";
+      background-color: var(--bg-color-secondary);
+      border: 1px solid var(--border-color);
+      transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+  }
+}
+
+/* سایز‌های مختلف */
+.form-control-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: var(--border-radius-sm);
+}
+
+.form-control-lg {
+  padding: 0.75rem 1rem;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  border-radius: var(--border-radius-lg);
+}
+
+/* فرم‌های خطی */
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  
+  .form-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 0;
+    margin-left: 0.5rem;
+  }
+  
+  .form-control {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+  }
+  
+  .form-check {
+    width: auto;
+  }
+}
+
+/* بازخورد اعتبارسنجی */
+.is-valid {
+  border-color: var(--success-color) !important;
+  
+  &:focus {
+    border-color: var(--success-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(var(--success-color-rgb), 0.25) !important;
+  }
+}
+
+.is-invalid {
+  border-color: var(--danger-color) !important;
+  
+  &:focus {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(var(--danger-color-rgb), 0.25) !important;
+  }
+}
+
+.valid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--success-color);
+}
+
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--danger-color);
+}
+
+.was-validated .form-control:valid ~ .valid-feedback,
+.form-control.is-valid ~ .valid-feedback {
+  display: block;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* انواع کنترل‌های خاص */
+select.form-control {
+  padding-left: 0.75rem;
+  
+  &[multiple] {
+    height: auto;
+  }
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: calc(1.5em + 1rem + 2px);
+  margin-bottom: 0;
+  
+  &-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(1.5em + 1rem + 2px);
+    margin: 0;
+    opacity: 0;
+    
+    &:focus ~ .custom-file-label {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 0.2rem rgba(var(--accent-color-rgb), 0.25);
+    }
+  }
+  
+  &-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: calc(1.5em + 1rem + 2px);
+    padding: 0.5rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-color);
+    background-color: var(--bg-color-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 3;
+      display: block;
+      height: calc(1.5em + 1rem);
+      padding: 0.5rem 0.75rem;
+      line-height: 1.5;
+      color: #fff;
+      content: "انتخاب فایل";
+      background-color: var(--accent-color);
+      border-right: inherit;
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+  }
+} 

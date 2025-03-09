@@ -1,0 +1,303 @@
+/**
+ * tasks.scss - استایل‌های صفحه وظایف
+ */
+
+.tasks-page {
+  padding: 1.5rem;
+  
+  .page-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin: 0;
+    }
+    
+    .header-actions {
+      .btn {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  
+  .tasks-filters {
+    background-color: var(--bg-color-secondary);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    
+    .filters-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+      
+      .form-group {
+        margin-bottom: 0;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+      }
+      
+      select, input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-sm);
+        background-color: var(--bg-color);
+        
+        &:focus {
+          border-color: var(--accent-color);
+          outline: none;
+        }
+      }
+    }
+    
+    .filters-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      
+      .btn {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  
+  .tasks-list {
+    background-color: var(--bg-color-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    
+    .tasks-list-header {
+      padding: 1rem 1.5rem;
+      background-color: var(--bg-color-tertiary);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      
+      .tasks-list-row {
+        color: var(--primary-color);
+      }
+    }
+    
+    .tasks-list-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr 1fr 1fr 100px;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.75rem 1.5rem;
+      
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr 2fr 1fr 1fr;
+        
+        .task-assigned-to, .task-priority {
+          display: none;
+        }
+      }
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr 2fr;
+        
+        .task-due-date, .task-status {
+          display: none;
+        }
+      }
+    }
+    
+    .task-item {
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.2s;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:hover {
+        background-color: var(--bg-color-tertiary);
+      }
+      
+      .task-id {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+      }
+      
+      .task-title {
+        font-weight: 600;
+        
+        .task-description {
+          font-weight: normal;
+          font-size: 0.9rem;
+          color: var(--text-color-light);
+          margin-top: 0.25rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 300px;
+        }
+      }
+      
+      .task-due-date {
+        font-size: 0.9rem;
+        
+        &.overdue {
+          color: var(--danger-color);
+          font-weight: 600;
+        }
+      }
+      
+      .task-status {
+        .status-badge {
+          display: inline-block;
+          padding: 0.25rem 0.5rem;
+          border-radius: 99px;
+          font-size: 0.75rem;
+          font-weight: 600;
+          text-align: center;
+          min-width: 90px;
+        }
+        
+        .status-pending {
+          background-color: rgba(var(--warning-color-rgb), 0.15);
+          color: var(--warning-color);
+        }
+        
+        .status-in-progress {
+          background-color: rgba(var(--info-color-rgb), 0.15);
+          color: var(--info-color);
+        }
+        
+        .status-completed {
+          background-color: rgba(var(--success-color-rgb), 0.15);
+          color: var(--success-color);
+        }
+        
+        .status-canceled {
+          background-color: rgba(var(--danger-color-rgb), 0.15);
+          color: var(--danger-color);
+        }
+      }
+      
+      .task-priority {
+        .priority-badge {
+          display: inline-block;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+        }
+        
+        .priority-low {
+          background-color: var(--success-color);
+        }
+        
+        .priority-medium {
+          background-color: var(--warning-color);
+        }
+        
+        .priority-high {
+          background-color: var(--danger-color);
+        }
+        
+        .priority-text {
+          margin-left: 0.25rem;
+          font-size: 0.9rem;
+        }
+      }
+      
+      .task-actions {
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0.25rem;
+          color: var(--text-color-light);
+          transition: color 0.2s;
+          
+          &:hover {
+            color: var(--accent-color);
+          }
+          
+          &:not(:last-child) {
+            margin-right: 0.5rem;
+          }
+        }
+      }
+    }
+    
+    .tasks-empty {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      
+      .empty-icon {
+        font-size: 3rem;
+        color: var(--text-color-lighter);
+        margin-bottom: 1rem;
+      }
+      
+      h3 {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+      }
+      
+      p {
+        color: var(--text-color-light);
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    
+    .pagination-item {
+      margin: 0 0.25rem;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-color-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      
+      &:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+      }
+      
+      &.active {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: white;
+      }
+      
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        
+        &:hover {
+          border-color: var(--border-color);
+          color: inherit;
+        }
+      }
+    }
+  }
+} 

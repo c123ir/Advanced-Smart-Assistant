@@ -1,0 +1,435 @@
+/**
+ * dashboard.scss - استایل‌های صفحه داشبورد
+ */
+
+.dashboard-page {
+  padding: 1.5rem;
+  
+  .page-header {
+    margin-bottom: 2rem;
+    
+    h1 {
+      font-size: 1.75rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .date-display {
+      color: var(--text-color-light);
+      font-size: 0.9rem;
+    }
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    
+    .stat-card {
+      background-color: var(--bg-color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-md);
+      }
+      
+      .stat-title {
+        font-size: 0.9rem;
+        color: var(--text-color-light);
+        margin-bottom: 0.5rem;
+      }
+      
+      .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      
+      .stat-footer {
+        display: flex;
+        align-items: center;
+        font-size: 0.85rem;
+        
+        .trend-up {
+          color: var(--success-color);
+        }
+        
+        .trend-down {
+          color: var(--danger-color);
+        }
+        
+        .trend-icon {
+          margin-right: 0.25rem;
+        }
+      }
+      
+      &.primary {
+        border-top: 3px solid var(--primary-color);
+        .stat-value { color: var(--primary-color); }
+      }
+      
+      &.accent {
+        border-top: 3px solid var(--accent-color);
+        .stat-value { color: var(--accent-color); }
+      }
+      
+      &.success {
+        border-top: 3px solid var(--success-color);
+        .stat-value { color: var(--success-color); }
+      }
+      
+      &.warning {
+        border-top: 3px solid var(--warning-color);
+        .stat-value { color: var(--warning-color); }
+      }
+    }
+  }
+  
+  .dashboard-sections {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    
+    @media (max-width: 1200px) {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-card {
+      background-color: var(--bg-color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      
+      .section-header {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        h2 {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--primary-color);
+          margin: 0;
+        }
+        
+        .header-actions {
+          a, button {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+      
+      .section-body {
+        padding: 1.5rem;
+      }
+    }
+  }
+  
+  .recent-tasks {
+    .task-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border-color);
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .task-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: var(--border-radius);
+        background-color: var(--bg-color-tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        color: var(--primary-color);
+      }
+      
+      .task-content {
+        flex: 1;
+        
+        .task-title {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+        }
+        
+        .task-meta {
+          display: flex;
+          font-size: 0.8rem;
+          color: var(--text-color-light);
+          
+          span:not(:last-child) {
+            margin-right: 1rem;
+          }
+        }
+      }
+      
+      .task-status {
+        margin-left: 1rem;
+      }
+    }
+  }
+  
+  .activity-feed {
+    .activity-item {
+      display: flex;
+      margin-bottom: 1.25rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .activity-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color: var(--bg-color-tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+        
+        &.create { color: var(--success-color); }
+        &.update { color: var(--accent-color); }
+        &.delete { color: var(--danger-color); }
+        &.complete { color: var(--success-color); }
+      }
+      
+      .activity-content {
+        flex: 1;
+        
+        .activity-text {
+          margin-bottom: 0.25rem;
+          
+          strong {
+            font-weight: 600;
+          }
+        }
+        
+        .activity-time {
+          font-size: 0.8rem;
+          color: var(--text-color-light);
+        }
+      }
+    }
+  }
+}
+
+/* صفحه داشبورد */
+.dashboard-page {
+  padding: 1.5rem 0;
+}
+
+/* سربرگ داشبورد */
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.dashboard-welcome {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-date {
+  color: var(--text-color-light);
+}
+
+/* کارت‌های آمار */
+.stats-card {
+  background-color: var(--bg-color-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.stats-title {
+  font-weight: 600;
+  color: var(--text-color-light);
+}
+
+.stats-icon {
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+}
+
+.stats-icon-tasks {
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  color: var(--accent-color);
+}
+
+.stats-icon-users {
+  background-color: rgba(var(--success-color-rgb), 0.1);
+  color: var(--success-color);
+}
+
+.stats-icon-progress {
+  background-color: rgba(var(--warning-color-rgb), 0.1);
+  color: var(--warning-color);
+}
+
+.stats-icon-completed {
+  background-color: rgba(var(--info-color-rgb), 0.1);
+  color: var(--info-color);
+}
+
+.stats-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stats-desc {
+  font-size: 0.875rem;
+  color: var(--text-color-light);
+}
+
+.stats-change {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.stats-change-up {
+  color: var(--success-color);
+}
+
+.stats-change-down {
+  color: var(--danger-color);
+}
+
+/* نمودارها */
+.chart-container {
+  background-color: var(--bg-color-secondary);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.chart-filters {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chart-content {
+  height: 300px;
+  position: relative;
+}
+
+/* جدول فعالیت‌ها */
+.activity-table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.activity-header {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.activity-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.activity-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-left: 1rem;
+}
+
+.activity-info {
+  flex: 1;
+}
+
+.activity-title {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.activity-description {
+  color: var(--text-color-light);
+  font-size: 0.875rem;
+}
+
+.activity-time {
+  color: var(--text-color-lighter);
+  font-size: 0.875rem;
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+  .stats-value {
+    font-size: 1.5rem;
+  }
+  
+  .chart-content {
+    height: 250px;
+  }
+} 

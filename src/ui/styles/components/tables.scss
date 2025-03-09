@@ -1,0 +1,209 @@
+/**
+ * tables.scss - استایل‌های مربوط به جداول
+ */
+
+/* جدول پایه */
+.table {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  border-collapse: collapse;
+  
+  th, td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    text-align: right;
+  }
+  
+  th {
+    font-weight: 600;
+    background-color: var(--bg-color-tertiary);
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+    white-space: nowrap;
+  }
+  
+  td {
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  tbody tr {
+    transition: background-color 0.15s ease-in-out;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+    }
+  }
+  
+  .table-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+}
+
+/* جدول با خطوط */
+.table-bordered {
+  border: 1px solid var(--border-color);
+  
+  th, td {
+    border: 1px solid var(--border-color);
+  }
+}
+
+/* جدول با سطرهای متناوب */
+.table-striped {
+  tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+/* جدول فشرده */
+.table-compact {
+  th, td {
+    padding: 0.5rem;
+  }
+}
+
+/* جدول پاسخگو */
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* سلول‌های خاص */
+.table {
+  /* سلول با وضعیت */
+  .cell-status {
+    display: flex;
+    align-items: center;
+    
+    .status-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 0.5rem;
+      display: inline-block;
+    }
+    
+    &.status-pending .status-indicator {
+      background-color: var(--warning-color);
+    }
+    
+    &.status-in-progress .status-indicator {
+      background-color: var(--info-color);
+    }
+    
+    &.status-completed .status-indicator {
+      background-color: var(--success-color);
+    }
+    
+    &.status-canceled .status-indicator {
+      background-color: var(--danger-color);
+    }
+  }
+  
+  /* سلول با بج */
+  .cell-badge {
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+    
+    .badge-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .badge-secondary {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+    
+    .badge-success {
+      background-color: var(--success-color);
+      color: white;
+    }
+    
+    .badge-danger {
+      background-color: var(--danger-color);
+      color: white;
+    }
+    
+    .badge-warning {
+      background-color: var(--warning-color);
+      color: white;
+    }
+    
+    .badge-info {
+      background-color: var(--info-color);
+      color: white;
+    }
+  }
+  
+  /* سلول با آواتار */
+  .cell-avatar {
+    display: flex;
+    align-items: center;
+    
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-left: 0.5rem;
+    }
+    
+    .avatar-name {
+      font-weight: 500;
+    }
+  }
+}
+
+/* جدول با کارت در نمای موبایل */
+@media (max-width: 768px) {
+  .table-mobile-card {
+    thead {
+      display: none;
+    }
+    
+    tbody tr {
+      display: block;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background-color: var(--bg-color-secondary);
+      box-shadow: var(--shadow);
+    }
+    
+    td {
+      display: flex;
+      padding: 0.5rem 0;
+      border: none;
+      
+      &:before {
+        content: attr(data-label);
+        font-weight: 600;
+        min-width: 40%;
+        margin-left: 1rem;
+      }
+    }
+    
+    .table-actions {
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+    }
+  }
+} 

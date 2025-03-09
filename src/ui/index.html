@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval';" />
+    <title>دستیار هوشمند پیشرفته</title>
+    <meta name="description" content="دستیار هوشمند پیشرفته برای مدیریت کارها و وظایف" />
+    <link rel="icon" type="image/png" href="./assets/images/favicon.png" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- فونت وزیرمتن -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+    <script>
+      // غیرفعال کردن خطاهای source map در DevTools
+      window.addEventListener('DOMContentLoaded', () => {
+        if (window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+          // تنظیم هوک DevTools برای جلوگیری از نمایش برخی خطاها
+          const originalConsoleError = console.error;
+          console.error = function(...args) {
+            // فیلتر کردن خطاهای مربوط به source map
+            const skipError = args.some(arg => 
+              typeof arg === 'string' && 
+              (arg.includes('source map') || 
+               arg.includes('DevTools') || 
+               arg.includes('Failed to parse'))
+            );
+            
+            if (!skipError) {
+              originalConsoleError.apply(console, args);
+            }
+          };
+        }
+      });
+      
+      // تعیین global به عنوان window
+      window.global = window;
+      
+      // تعیین پلی‌فیل برای require
+      if (typeof window.require !== 'function') {
+        window.require = function(moduleName) {
+          // از نمایش پیام هشدار در کنسول خودداری می‌کنیم
+          // console.warn('require is not available - using polyfill');
+          if (window.nodeRequire) {
+            return window.nodeRequire(moduleName);
+          }
+          return {};
+        };
+      }
+      
+      // تعیین process اگر وجود نداشته باشد
+      if (!window.process) {
+        window.process = {
+          env: { 
+            NODE_ENV: 'development'
+          }
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html> 

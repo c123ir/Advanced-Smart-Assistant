@@ -1,0 +1,226 @@
+/**
+ * loading.scss - استایل‌های مربوط به نشانگرهای بارگذاری
+ */
+
+/* صفحه بارگذاری */
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 200px;
+  background-color: var(--bg-color);
+  
+  .loading-text {
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: var(--text-color-light);
+  }
+}
+
+/* اسپینر دایره‌ای ساده */
+.spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(var(--accent-color-rgb), 0.1);
+  border-radius: 50%;
+  border-right-color: var(--accent-color);
+  animation: spin 1s linear infinite;
+  
+  &.spinner-sm {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+  }
+  
+  &.spinner-lg {
+    width: 60px;
+    height: 60px;
+    border-width: 6px;
+  }
+  
+  &.spinner-light {
+    border-color: rgba(255, 255, 255, 0.1);
+    border-right-color: white;
+  }
+  
+  &.spinner-primary {
+    border-color: rgba(var(--primary-color-rgb), 0.1);
+    border-right-color: var(--primary-color);
+  }
+  
+  &.spinner-secondary {
+    border-color: rgba(var(--secondary-color-rgb), 0.1);
+    border-right-color: var(--secondary-color);
+  }
+  
+  &.spinner-success {
+    border-color: rgba(var(--success-color-rgb), 0.1);
+    border-right-color: var(--success-color);
+  }
+  
+  &.spinner-danger {
+    border-color: rgba(var(--danger-color-rgb), 0.1);
+    border-right-color: var(--danger-color);
+  }
+}
+
+/* انیمیشن چرخش */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* نوار پیشرفت */
+.progress {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: rgba(var(--accent-color-rgb), 0.1);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  
+  .progress-bar {
+    height: 100%;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+  }
+  
+  &.progress-primary .progress-bar {
+    background-color: var(--primary-color);
+  }
+  
+  &.progress-secondary .progress-bar {
+    background-color: var(--secondary-color);
+  }
+  
+  &.progress-success .progress-bar {
+    background-color: var(--success-color);
+  }
+  
+  &.progress-danger .progress-bar {
+    background-color: var(--danger-color);
+  }
+  
+  &.progress-warning .progress-bar {
+    background-color: var(--warning-color);
+  }
+  
+  &.progress-info .progress-bar {
+    background-color: var(--info-color);
+  }
+}
+
+/* نشانگر در حال بارگذاری برای دکمه‌ها */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.7;
+  
+  .btn-text {
+    visibility: hidden;
+  }
+  
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -10px;
+    margin-left: -10px;
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+  }
+}
+
+/* اسکلتون لودینگ */
+.skeleton {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-color-tertiary);
+  border-radius: var(--border-radius);
+  
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0)
+    );
+    animation: shimmer 2s infinite;
+    content: '';
+  }
+  
+  &.skeleton-text {
+    width: 100%;
+    height: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  &.skeleton-title {
+    width: 50%;
+    height: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  &.skeleton-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  &.skeleton-button {
+    width: 80px;
+    height: 36px;
+  }
+  
+  &.skeleton-card {
+    width: 100%;
+    height: 200px;
+  }
+}
+
+/* انیمیشن درخشش اسکلتون */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* پیام بارگذاری مرکزی */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  
+  .loading-container {
+    background-color: var(--bg-color-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    
+    .loading-text {
+      margin-top: 1rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+  }
+} 
