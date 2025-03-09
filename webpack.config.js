@@ -59,7 +59,7 @@ const rendererConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'renderer.js',
-    publicPath: isDevelopment ? '/' : './'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
@@ -144,7 +144,7 @@ const rendererConfig = {
     new CopyPlugin({
       patterns: [
         { 
-          from: 'src/assets', 
+          from: 'src/assets',
           to: 'assets',
           noErrorOnMissing: true
         }

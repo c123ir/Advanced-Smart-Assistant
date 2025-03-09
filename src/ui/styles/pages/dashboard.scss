@@ -2,434 +2,387 @@
  * dashboard.scss - استایل‌های صفحه داشبورد
  */
 
+@use '../theme' as *;
+
 .dashboard-page {
-  padding: 1.5rem;
+  padding: var(--spacing-lg);
+  animation: fadeIn 0.5s ease;
   
-  .page-header {
-    margin-bottom: 2rem;
+  .welcome-section {
+    margin-bottom: var(--spacing-2xl);
     
-    h1 {
-      font-size: 1.75rem;
-      color: var(--primary-color);
-      margin-bottom: 0.5rem;
-    }
-    
-    .date-display {
-      color: var(--text-color-light);
-      font-size: 0.9rem;
-    }
-  }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    
-    .stat-card {
-      background-color: var(--bg-color-secondary);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      padding: 1.5rem;
-      transition: transform 0.2s, box-shadow 0.2s;
+    .welcome-card {
+      @include glass-effect;
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-xl);
+      position: relative;
+      overflow: hidden;
       
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-md);
+      /* پس‌زمینه گرافیکی */
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100%;
+        background: url('~@/assets/images/dashboard-pattern.svg') no-repeat center right;
+        opacity: 0.1;
+        z-index: 0;
       }
       
-      .stat-title {
-        font-size: 0.9rem;
-        color: var(--text-color-light);
-        margin-bottom: 0.5rem;
-      }
-      
-      .stat-value {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.75rem;
-      }
-      
-      .stat-footer {
-        display: flex;
-        align-items: center;
-        font-size: 0.85rem;
+      .welcome-content {
+        position: relative;
+        z-index: 1;
         
-        .trend-up {
-          color: var(--success-color);
+        h1 {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--text-color);
+          margin: 0 0 var(--spacing-sm);
+          animation: slideDown 0.5s ease 0.2s both;
         }
         
-        .trend-down {
-          color: var(--danger-color);
-        }
-        
-        .trend-icon {
-          margin-right: 0.25rem;
-        }
-      }
-      
-      &.primary {
-        border-top: 3px solid var(--primary-color);
-        .stat-value { color: var(--primary-color); }
-      }
-      
-      &.accent {
-        border-top: 3px solid var(--accent-color);
-        .stat-value { color: var(--accent-color); }
-      }
-      
-      &.success {
-        border-top: 3px solid var(--success-color);
-        .stat-value { color: var(--success-color); }
-      }
-      
-      &.warning {
-        border-top: 3px solid var(--warning-color);
-        .stat-value { color: var(--warning-color); }
-      }
-    }
-  }
-  
-  .dashboard-sections {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 1.5rem;
-    
-    @media (max-width: 1200px) {
-      grid-template-columns: 1fr;
-    }
-    
-    .section-card {
-      background-color: var(--bg-color-secondary);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow);
-      
-      .section-header {
-        padding: 1rem 1.5rem;
-        border-bottom: 1px solid var(--border-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        
-        h2 {
+        p {
           font-size: 1.1rem;
-          font-weight: 600;
-          color: var(--primary-color);
+          color: var(--text-color-light);
           margin: 0;
+          max-width: 600px;
+          animation: slideDown 0.5s ease 0.3s both;
+        }
+      }
+    }
+  }
+  
+  .stats-section {
+    margin-bottom: var(--spacing-2xl);
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--spacing-lg);
+      
+      .stat-card {
+        @include glass-effect;
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg);
+        @include card-hover;
+        animation: scaleIn 0.5s ease both;
+        
+        @for $i from 1 through 4 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{0.2 + $i * 0.1}s;
+          }
         }
         
-        .header-actions {
-          a, button {
-            color: var(--accent-color);
-            font-size: 0.9rem;
+        .stat-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: var(--border-radius);
+          @include flex-center;
+          margin-bottom: var(--spacing-md);
+          
+          svg {
+            width: 24px;
+            height: 24px;
+            color: white;
+          }
+          
+          &.purple { background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); }
+          &.blue { background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); }
+          &.green { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+          &.orange { background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%); }
+        }
+        
+        .stat-content {
+          .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0 0 var(--spacing-xs);
             
-            &:hover {
-              text-decoration: underline;
+            .trend {
+              font-size: 1rem;
+              font-weight: 500;
+              margin-right: var(--spacing-xs);
+              
+              &.up { color: #10B981; }
+              &.down { color: #EF4444; }
+            }
+          }
+          
+          .stat-label {
+            font-size: 0.95rem;
+            color: var(--text-color-light);
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+  
+  .charts-section {
+    margin-bottom: var(--spacing-2xl);
+    
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--spacing-lg);
+      
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+      }
+      
+      .chart-card {
+        @include glass-effect;
+        border-radius: var(--border-radius-lg);
+        padding: var(--spacing-lg);
+        animation: slideUp 0.5s ease both;
+        
+        &.main-chart {
+          animation-delay: 0.4s;
+          
+          .chart-header {
+            @include flex-between;
+            margin-bottom: var(--spacing-lg);
+            
+            .chart-title {
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: var(--text-color);
+              margin: 0;
+            }
+            
+            .chart-actions {
+              display: flex;
+              gap: var(--spacing-sm);
+              
+              .chart-button {
+                padding: var(--spacing-sm) var(--spacing-md);
+                border: 1px solid var(--border-color);
+                border-radius: var(--border-radius);
+                background: var(--bg-color-secondary);
+                color: var(--text-color);
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all var(--transition-fast);
+                
+                &:hover {
+                  border-color: var(--primary-color);
+                  color: var(--primary-color);
+                }
+                
+                &.active {
+                  background: var(--primary-color);
+                  border-color: var(--primary-color);
+                  color: white;
+                }
+              }
+            }
+          }
+          
+          .chart-content {
+            height: 400px;
+            position: relative;
+            
+            canvas {
+              width: 100% !important;
+              height: 100% !important;
+            }
+          }
+        }
+        
+        &.side-chart {
+          animation-delay: 0.5s;
+          
+          .chart-header {
+            margin-bottom: var(--spacing-lg);
+            
+            .chart-title {
+              font-size: 1.1rem;
+              font-weight: 600;
+              color: var(--text-color);
+              margin: 0;
+            }
+          }
+          
+          .chart-content {
+            height: 300px;
+            
+            canvas {
+              width: 100% !important;
+              height: 100% !important;
             }
           }
         }
       }
-      
-      .section-body {
-        padding: 1.5rem;
-      }
     }
   }
   
-  .recent-tasks {
-    .task-item {
-      display: flex;
-      align-items: center;
-      padding: 0.75rem 0;
-      border-bottom: 1px solid var(--border-color);
+  .recent-activity {
+    .activity-card {
+      @include glass-effect;
+      border-radius: var(--border-radius-lg);
+      padding: var(--spacing-lg);
+      animation: slideUp 0.5s ease 0.6s both;
       
-      &:last-child {
-        border-bottom: none;
-      }
-      
-      .task-icon {
-        width: 32px;
-        height: 32px;
-        border-radius: var(--border-radius);
-        background-color: var(--bg-color-tertiary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        color: var(--primary-color);
-      }
-      
-      .task-content {
-        flex: 1;
+      .activity-header {
+        @include flex-between;
+        margin-bottom: var(--spacing-lg);
         
-        .task-title {
+        .activity-title {
+          font-size: 1.1rem;
           font-weight: 600;
-          margin-bottom: 0.25rem;
+          color: var(--text-color);
+          margin: 0;
         }
         
-        .task-meta {
-          display: flex;
-          font-size: 0.8rem;
-          color: var(--text-color-light);
+        .view-all {
+          color: var(--primary-color);
+          font-size: 0.9rem;
+          font-weight: 500;
+          text-decoration: none;
+          transition: all var(--transition-fast);
           
-          span:not(:last-child) {
-            margin-right: 1rem;
+          &:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
           }
         }
       }
       
-      .task-status {
-        margin-left: 1rem;
-      }
-    }
-  }
-  
-  .activity-feed {
-    .activity-item {
-      display: flex;
-      margin-bottom: 1.25rem;
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-      
-      .activity-icon {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: var(--bg-color-tertiary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        flex-shrink: 0;
-        
-        &.create { color: var(--success-color); }
-        &.update { color: var(--accent-color); }
-        &.delete { color: var(--danger-color); }
-        &.complete { color: var(--success-color); }
-      }
-      
-      .activity-content {
-        flex: 1;
-        
-        .activity-text {
-          margin-bottom: 0.25rem;
+      .activity-list {
+        .activity-item {
+          @include flex-between;
+          padding: var(--spacing-md) 0;
+          border-bottom: 1px solid var(--border-color);
+          animation: fadeIn 0.5s ease both;
           
-          strong {
-            font-weight: 600;
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{0.7 + $i * 0.1}s;
+            }
+          }
+          
+          &:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+          
+          .activity-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            
+            .activity-icon {
+              width: 40px;
+              height: 40px;
+              border-radius: var(--border-radius);
+              @include flex-center;
+              flex-shrink: 0;
+              
+              svg {
+                width: 20px;
+                height: 20px;
+                color: white;
+              }
+              
+              &.task { background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%); }
+              &.comment { background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%); }
+              &.file { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+            }
+            
+            .activity-info {
+              .activity-text {
+                font-size: 0.95rem;
+                color: var(--text-color);
+                margin: 0 0 var(--spacing-xs);
+                
+                strong {
+                  font-weight: 600;
+                }
+              }
+              
+              .activity-time {
+                font-size: 0.85rem;
+                color: var(--text-color-light);
+                margin: 0;
+              }
+            }
+          }
+          
+          .activity-action {
+            button {
+              padding: var(--spacing-sm) var(--spacing-md);
+              border: 1px solid var(--border-color);
+              border-radius: var(--border-radius);
+              background: var(--bg-color-secondary);
+              color: var(--text-color);
+              font-size: 0.9rem;
+              cursor: pointer;
+              transition: all var(--transition-fast);
+              
+              &:hover {
+                border-color: var(--primary-color);
+                color: var(--primary-color);
+              }
+            }
           }
         }
-        
-        .activity-time {
-          font-size: 0.8rem;
-          color: var(--text-color-light);
-        }
       }
     }
   }
-}
-
-/* صفحه داشبورد */
-.dashboard-page {
-  padding: 1.5rem 0;
-}
-
-/* سربرگ داشبورد */
-.dashboard-header {
-  margin-bottom: 2rem;
-}
-
-.dashboard-welcome {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.dashboard-date {
-  color: var(--text-color-light);
-}
-
-/* کارت‌های آمار */
-.stats-card {
-  background-color: var(--bg-color-secondary);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s;
-  overflow: hidden;
-  
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-  }
-}
-
-.stats-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.stats-title {
-  font-weight: 600;
-  color: var(--text-color-light);
-}
-
-.stats-icon {
-  font-size: 1.5rem;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-.stats-icon-tasks {
-  background-color: rgba(var(--accent-color-rgb), 0.1);
-  color: var(--accent-color);
-}
-
-.stats-icon-users {
-  background-color: rgba(var(--success-color-rgb), 0.1);
-  color: var(--success-color);
-}
-
-.stats-icon-progress {
-  background-color: rgba(var(--warning-color-rgb), 0.1);
-  color: var(--warning-color);
-}
-
-.stats-icon-completed {
-  background-color: rgba(var(--info-color-rgb), 0.1);
-  color: var(--info-color);
-}
-
-.stats-value {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.stats-desc {
-  font-size: 0.875rem;
-  color: var(--text-color-light);
-}
-
-.stats-change {
-  font-size: 0.875rem;
-  font-weight: 600;
-}
-
-.stats-change-up {
-  color: var(--success-color);
-}
-
-.stats-change-down {
-  color: var(--danger-color);
-}
-
-/* نمودارها */
-.chart-container {
-  background-color: var(--bg-color-secondary);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: var(--shadow);
-}
-
-.chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.chart-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.chart-filters {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.chart-content {
-  height: 300px;
-  position: relative;
-}
-
-/* جدول فعالیت‌ها */
-.activity-table {
-  width: 100%;
-  margin-bottom: 1.5rem;
-}
-
-.activity-header {
-  margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.activity-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.activity-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  
-  &:last-child {
-    border-bottom: none;
-  }
-}
-
-.activity-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  margin-left: 1rem;
-}
-
-.activity-info {
-  flex: 1;
-}
-
-.activity-title {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-}
-
-.activity-description {
-  color: var(--text-color-light);
-  font-size: 0.875rem;
-}
-
-.activity-time {
-  color: var(--text-color-lighter);
-  font-size: 0.875rem;
 }
 
 /* رسپانسیو */
 @media (max-width: 768px) {
-  .stats-value {
-    font-size: 1.5rem;
-  }
-  
-  .chart-content {
-    height: 250px;
+  .dashboard-page {
+    padding: var(--spacing-md);
+    
+    .welcome-section {
+      .welcome-card {
+        padding: var(--spacing-lg);
+        
+        &::before {
+          width: 200px;
+        }
+        
+        .welcome-content {
+          h1 {
+            font-size: 1.5rem;
+          }
+          
+          p {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    
+    .stats-section {
+      .stats-grid {
+        gap: var(--spacing-md);
+      }
+    }
+    
+    .charts-section {
+      .charts-grid {
+        gap: var(--spacing-md);
+        
+        .chart-card {
+          &.main-chart {
+            .chart-content {
+              height: 300px;
+            }
+          }
+          
+          &.side-chart {
+            .chart-content {
+              height: 250px;
+            }
+          }
+        }
+      }
+    }
   }
 } 

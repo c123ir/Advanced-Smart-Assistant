@@ -10,6 +10,7 @@
 @use "sass:color";
 
 /* استایل‌های پایه */
+@use './theme';
 @use './base/variables';
 @use './base/reset';
 @use './base/typography';
